@@ -10,7 +10,7 @@ import TestimonialList from './admin/TestimonialList';
 import TestimonialForm from './admin/TestimonialForm';
 import CategoryList from './admin/CategoryList';
 import CategoryForm from './admin/CategoryForm';
-import { Package, MessageSquare, LogOut, BarChart3, ChevronRight, MessageCircle, FolderTree } from 'lucide-react';
+import { Package, MessageSquare, LogOut, BarChart3, ChevronRight, MessageCircle, FolderTree, Home } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const AdminDashboard = () => {
@@ -191,6 +191,29 @@ const AdminDashboard = () => {
             </motion.div>
           </Link>
         </div>
+
+        {/* Back to Landing Page Button */}
+        <Link to="/">
+          <motion.button
+            layout
+            className="absolute bottom-28 left-0 right-0 mx-2 flex h-10 items-center rounded-md text-gray-600 hover:bg-gray-100 transition-colors"
+          >
+            <motion.div layout className="grid h-full w-10 place-content-center text-lg">
+              <Home className="w-5 h-5" />
+            </motion.div>
+            {open && (
+              <motion.span
+                layout
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.125 }}
+                className="text-xs font-medium"
+              >
+                Back to Home
+              </motion.span>
+            )}
+          </motion.button>
+        </Link>
 
         {/* Logout Button */}
         <motion.button

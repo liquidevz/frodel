@@ -122,7 +122,7 @@ const Products = () => {
             <p className="text-gray-600 text-lg">No products found</p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
             {filteredProducts.map((product) => (
               <div
                 key={product.slug}
@@ -160,12 +160,12 @@ const Products = () => {
                   </div>
 
                   {/* Price and Actions */}
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                     <span className="text-lg font-bold text-blue-600">₹{product.price}</span>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 w-full sm:w-auto">
                       <Link
                         to={`/product/${product.slug}`}
-                        className="flex-1 px-3 py-2 text-center text-sm bg-gray-100 text-gray-900 rounded hover:bg-gray-200 transition"
+                        className="flex-1 sm:flex-none px-3 py-2 text-center text-sm bg-gray-100 text-gray-900 rounded hover:bg-gray-200 transition"
                       >
                         View
                       </Link>

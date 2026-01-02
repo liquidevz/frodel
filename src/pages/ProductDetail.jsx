@@ -77,7 +77,7 @@ const ProductDetail = () => {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Back Button */}
         <button
           onClick={() => navigate('/products')}
@@ -87,17 +87,17 @@ const ProductDetail = () => {
           Back to Products
         </button>
 
-        <div className="grid md:grid-cols-2 gap-8 bg-white rounded-lg shadow-lg p-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 bg-white rounded-lg shadow-lg p-4 sm:p-8">
           {/* Image */}
           <div>
             {product.imageUrl ? (
               <img
                 src={product.imageUrl}
                 alt={product.name}
-                className="w-full h-96 object-cover rounded-lg"
+                className="w-full h-64 sm:h-96 object-cover rounded-lg"
               />
             ) : (
-              <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center text-gray-400">
+              <div className="w-full h-64 sm:h-96 bg-gray-200 rounded-lg flex items-center justify-center text-gray-400">
                 No Image Available
               </div>
             )}
@@ -111,14 +111,14 @@ const ProductDetail = () => {
               </span>
             </div>
 
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">{product.name}</h1>
+            <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-4">{product.name}</h1>
 
             <p className="text-gray-600 text-lg mb-6">{product.description}</p>
 
             {/* Specifications */}
             <div className="bg-gray-50 rounded-lg p-6 mb-6">
               <h3 className="font-bold text-gray-900 mb-4">Specifications</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <p className="text-sm text-gray-600">Weight per Piece</p>
                   <p className="text-lg font-semibold text-gray-900">{product.weightPerPiece}g</p>
@@ -136,10 +136,10 @@ const ProductDetail = () => {
 
             {/* Price and Actions */}
             <div className="border-t pt-6">
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
                 <div>
                   <p className="text-sm text-gray-600">Price per Piece</p>
-                  <p className="text-4xl font-bold text-blue-600">₹{product.price}</p>
+                  <p className="text-3xl sm:text-4xl font-bold text-blue-600">₹{product.price}</p>
                 </div>
               </div>
 
@@ -148,10 +148,10 @@ const ProductDetail = () => {
                 <label className="block text-sm font-medium text-gray-900 mb-2">
                   Quantity
                 </label>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 sm:gap-4">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100"
+                    className="px-3 sm:px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100"
                   >
                     -
                   </button>
@@ -159,11 +159,11 @@ const ProductDetail = () => {
                     type="number"
                     value={quantity}
                     onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                    className="w-20 px-4 py-2 border border-gray-300 rounded-lg text-center"
+                    className="w-16 sm:w-20 px-2 sm:px-4 py-2 border border-gray-300 rounded-lg text-center"
                   />
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100"
+                    className="px-3 sm:px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100"
                   >
                     +
                   </button>

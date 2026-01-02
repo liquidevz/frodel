@@ -294,22 +294,22 @@ const OverlayCopy = ({ subheading, heading }) => {
       ref={targetRef}
       className="absolute left-0 top-0 flex h-screen w-full flex-col items-center justify-center text-white"
     >
-      <p className="mb-2 text-center text-xl md:mb-4 md:text-3xl">
+      <p className="mb-2 text-center text-lg sm:text-xl md:mb-4 md:text-3xl">
         {subheading}
       </p>
-      <p className="text-center text-4xl font-bold md:text-7xl">{heading}</p>
+      <p className="text-center text-2xl sm:text-4xl font-bold md:text-7xl">{heading}</p>
     </motion.div>
   );
 };
 
 const InstructionContent = ({ title, subtitle, steps, subtitle2, steps2 }) => (
-  <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 pb-24 pt-12 md:grid-cols-12">
-    <h2 className="col-span-1 text-3xl font-bold md:col-span-4">
+  <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 sm:gap-8 px-4 pb-12 sm:pb-24 pt-8 sm:pt-12 md:grid-cols-12">
+    <h2 className="col-span-1 text-2xl sm:text-3xl font-bold md:col-span-4">
       {title}
     </h2>
     <div className="col-span-1 md:col-span-8">
-      {subtitle && <h3 className="text-xl font-semibold mb-4 text-blue-600">{subtitle}</h3>}
-      <ol className="space-y-3 mb-8 list-decimal list-inside text-lg text-neutral-600">
+      {subtitle && <h3 className="text-lg sm:text-xl font-semibold mb-4 text-blue-600">{subtitle}</h3>}
+      <ol className="space-y-3 mb-8 list-decimal list-inside text-base sm:text-lg text-neutral-600">
         {steps.map((step, idx) => (
           <li key={idx} className="leading-relaxed">
             {step}
@@ -318,8 +318,8 @@ const InstructionContent = ({ title, subtitle, steps, subtitle2, steps2 }) => (
       </ol>
       {subtitle2 && steps2 && (
         <>
-          <h3 className="text-xl font-semibold mb-4 text-blue-600 mt-8">{subtitle2}</h3>
-          <ol className="space-y-3 list-decimal list-inside text-lg text-neutral-600">
+          <h3 className="text-lg sm:text-xl font-semibold mb-4 text-blue-600 mt-8">{subtitle2}</h3>
+          <ol className="space-y-3 list-decimal list-inside text-base sm:text-lg text-neutral-600">
             {steps2.map((step, idx) => (
               <li key={idx} className="leading-relaxed">
                 {step}

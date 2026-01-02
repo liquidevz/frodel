@@ -15,28 +15,28 @@ const Home = () => {
       </div>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 sm:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg hover:shadow-xl transition">
               <Package className="w-12 h-12 text-blue-600 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Wide Selection</h3>
+              <h3 className="text-lg sm:text-xl font-bold mb-2">Wide Selection</h3>
               <p className="text-gray-600">
                 Browse hundreds of premium frozen food products with detailed specifications and pricing.
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
+            <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg hover:shadow-xl transition">
               <ShoppingCart className="w-12 h-12 text-blue-600 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Easy Bulk Orders</h3>
+              <h3 className="text-lg sm:text-xl font-bold mb-2">Easy Bulk Orders</h3>
               <p className="text-gray-600">
                 Add items to your cart and submit bulk enquiries with custom quantities and requirements.
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
+            <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg hover:shadow-xl transition">
               <TrendingUp className="w-12 h-12 text-blue-600 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Best Pricing</h3>
+              <h3 className="text-lg sm:text-xl font-bold mb-2">Best Pricing</h3>
               <p className="text-gray-600">
                 Competitive pricing for bulk orders. Contact us for volume discounts and special offers.
               </p>
@@ -46,10 +46,10 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
-          <p className="text-xl text-gray-600">Trusted by restaurants, caterers, and food businesses across the region.</p>
+      <section className="py-12 sm:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
+          <p className="text-lg sm:text-xl text-gray-600">Trusted by restaurants, caterers, and food businesses across the region.</p>
         </div>
         <StaggerTestimonials />
       </section>
@@ -58,10 +58,10 @@ const Home = () => {
       <GetInTouch />
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-cyan-600">
+      <section className="py-12 sm:py-20 bg-gradient-to-r from-blue-600 to-cyan-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-4">Ready to Order?</h2>
-          <p className="text-xl text-blue-100 mb-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Order?</h2>
+          <p className="text-lg sm:text-xl text-blue-100 mb-8">
             Browse our complete product catalog and submit your bulk enquiry today.
           </p>
           <Link
@@ -75,9 +75,9 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-300 py-12">
+      <footer className="bg-gray-900 text-gray-300 py-8 sm:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Snowflake className="w-6 h-6 text-blue-400" />

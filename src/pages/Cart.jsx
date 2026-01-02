@@ -102,14 +102,14 @@ const Cart = () => {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Shopping Cart</h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Shopping Cart</h1>
           <p className="text-gray-500 mt-1">{cart.length} item(s) in your cart</p>
         </div>
 
         {showEnquiryForm ? (
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 max-w-3xl mx-auto">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-8 max-w-3xl mx-auto">
             <button
               onClick={() => setShowEnquiryForm(false)}
               className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-6"
@@ -118,11 +118,11 @@ const Cart = () => {
               Back to Cart
             </button>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Submit Your Enquiry</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Submit Your Enquiry</h2>
             <p className="text-gray-500 mb-6">Fill in your details and we'll get back to you soon</p>
 
-            <form onSubmit={handleSubmitEnquiry} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmitEnquiry} className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
                   <input
@@ -148,7 +148,7 @@ const Cart = () => {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
                   <input
@@ -211,24 +211,24 @@ const Cart = () => {
             </form>
           </div>
         ) : (
-          <div className="grid lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="lg:col-span-2 space-y-3 sm:space-y-4">
               {cart.map((item) => (
-                <div key={item.productId} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                  <div className="flex items-center gap-6">
+                <div key={item.productId} className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
                     {item.product.imageUrl && (
                       <img
                         src={item.product.imageUrl}
                         alt={item.product.name}
-                        className="w-24 h-24 object-cover rounded-lg"
+                        className="w-full sm:w-24 h-48 sm:h-24 object-cover rounded-lg"
                       />
                     )}
-                    <div className="flex-1">
-                      <h3 className="font-bold text-gray-900 text-lg">{item.product.name}</h3>
+                    <div className="flex-1 w-full">
+                      <h3 className="font-bold text-gray-900 text-base sm:text-lg">{item.product.name}</h3>
                       <p className="text-sm text-gray-500">{item.product.category}</p>
                       <p className="text-lg font-semibold text-blue-600 mt-2">₹{item.product.price}</p>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-start">
                       <button
                         onClick={() => updateQuantity(item.productId, item.quantity - 1)}
                         className="p-2 border border-gray-300 rounded-lg hover:bg-gray-100"
@@ -243,11 +243,11 @@ const Cart = () => {
                         <Plus className="w-4 h-4" />
                       </button>
                     </div>
-                    <div className="text-right">
+                    <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start w-full sm:w-auto gap-2">
                       <p className="text-lg font-bold text-gray-900">₹{(item.product.price * item.quantity).toFixed(2)}</p>
                       <button
                         onClick={() => removeFromCart(item.productId)}
-                        className="mt-2 text-red-600 hover:text-red-700"
+                        className="text-red-600 hover:text-red-700"
                       >
                         <Trash2 className="w-5 h-5" />
                       </button>

@@ -71,7 +71,22 @@ export const StaggerTestimonials = () => {
   if (loading || testimonials.length === 0) return null;
 
   return (
-    <div className="relative w-full overflow-hidden bg-white" style={{ height: SECTION_HEIGHT }}>
+    <div 
+      className="relative w-full overflow-hidden bg-white" 
+      style={{ height: SECTION_HEIGHT }}
+      onTouchStart={(e) => {
+        const touch = e.touches[0];
+        e.currentTarget.dataset.startX = touch.clientX;
+      }}
+      onTouchEnd={(e) => {
+        const startX = parseFloat(e.currentTarget.dataset.startX);
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        if (Math.abs(diff) > 50) {
+          handleMove(diff > 0 ? 1 : -1);
+        }
+      }}
+    >
       {testimonials.map((t, idx) => {
         let position = 0;
         if (testimonials.length % 2) {
@@ -132,7 +147,6 @@ const TestimonialCard = ({ position, testimonial, handleMove, cardSize }) => {
       }}
       transition={{
         type: "spring",
-        mass: 3,
         stiffness: 400,
         damping: 50,
       }}

@@ -56,9 +56,9 @@ const Register = () => {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
 
-      <div className="flex items-center justify-center py-12 px-4">
-        <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2 text-center">Create Account</h1>
+      <div className="flex items-center justify-center py-8 sm:py-12 px-4">
+        <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6 sm:p-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 text-center">Create Account</h1>
           <p className="text-gray-600 text-center mb-8">Join us to start ordering</p>
 
           {error && (
