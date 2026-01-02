@@ -74,111 +74,131 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
         {/* Back Button */}
         <button
           onClick={() => navigate('/products')}
-          className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-8"
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-8 font-medium transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
           Back to Products
         </button>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 bg-white rounded-lg shadow-lg p-4 sm:p-8">
-          {/* Image */}
-          <div>
-            {product.imageUrl ? (
-              <img
-                src={product.imageUrl}
-                alt={product.name}
-                className="w-full h-64 sm:h-96 object-cover rounded-lg"
-              />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Images */}
+          <div className="space-y-4">
+            {product.images && product.images.length > 0 ? (
+              <>
+                <div className="relative overflow-hidden rounded-lg border border-gray-200">
+                  <img
+                    src={product.images[0].url}
+                    alt={product.name}
+                    className="w-full h-[500px] object-cover"
+                  />
+                </div>
+                {product.images.length > 1 && (
+                  <div className="grid grid-cols-4 gap-3">
+                    {product.images.slice(1).map((img, idx) => (
+                      <div key={idx} className="relative overflow-hidden rounded-lg border border-gray-200 cursor-pointer hover:border-gray-400 transition-colors">
+                        <img
+                          src={img.url}
+                          alt={`${product.name} ${idx + 2}`}
+                          className="w-full h-24 object-cover"
+                          onClick={(e) => {
+                            const mainImg = e.target.parentElement.parentElement.parentElement.querySelector('img');
+                            const temp = mainImg.src;
+                            mainImg.src = e.target.src;
+                            e.target.src = temp;
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </>
             ) : (
-              <div className="w-full h-64 sm:h-96 bg-gray-200 rounded-lg flex items-center justify-center text-gray-400">
-                No Image Available
+              <div className="w-full h-[500px] bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 border border-gray-200">
+                <div className="text-center">
+                  <ShoppingCart className="w-12 h-12 mx-auto mb-2" />
+                  <p className="text-sm">No Image Available</p>
+                </div>
               </div>
             )}
           </div>
 
           {/* Details */}
-          <div>
-            <div className="mb-4">
-              <span className="text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded">
+          <div className="space-y-8">
+            <div>
+              <span className="inline-block text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">
                 {product.category}
               </span>
+              <h1 className="text-4xl font-semibold text-gray-900 mb-4">{product.name}</h1>
+              <p className="text-gray-600 text-base leading-relaxed">{product.description}</p>
             </div>
 
-            <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-4">{product.name}</h1>
-
-            <p className="text-gray-600 text-lg mb-6">{product.description}</p>
+            {/* Price */}
+            <div className="border-t border-b border-gray-200 py-6">
+              <p className="text-sm text-gray-500 mb-1">Price per Piece</p>
+              <p className="text-4xl font-semibold text-gray-900">₹{product.price}</p>
+            </div>
 
             {/* Specifications */}
-            <div className="bg-gray-50 rounded-lg p-6 mb-6">
-              <h3 className="font-bold text-gray-900 mb-4">Specifications</h3>
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <div>
+              <h3 className="text-sm font-medium text-gray-900 uppercase tracking-wider mb-4">Specifications</h3>
+              <div className="grid grid-cols-3 gap-6">
                 <div>
-                  <p className="text-sm text-gray-600">Weight per Piece</p>
-                  <p className="text-lg font-semibold text-gray-900">{product.weightPerPiece}g</p>
+                  <p className="text-xs text-gray-500 mb-1">Weight/Piece</p>
+                  <p className="text-lg font-medium text-gray-900">{product.weightPerPiece}g</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600">Pieces per KG</p>
-                  <p className="text-lg font-semibold text-gray-900">{product.piecesPerKg}</p>
+                  <p className="text-xs text-gray-500 mb-1">Pieces/KG</p>
+                  <p className="text-lg font-medium text-gray-900">{product.piecesPerKg}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600">Stock</p>
-                  <p className="text-lg font-semibold text-gray-900">{product.stock} units</p>
+                  <p className="text-xs text-gray-500 mb-1">Stock</p>
+                  <p className="text-lg font-medium text-gray-900">{product.stock}</p>
                 </div>
               </div>
             </div>
 
-            {/* Price and Actions */}
-            <div className="border-t pt-6">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
-                <div>
-                  <p className="text-sm text-gray-600">Price per Piece</p>
-                  <p className="text-3xl sm:text-4xl font-bold text-blue-600">₹{product.price}</p>
-                </div>
+            {/* Quantity Selector */}
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-3">
+                Quantity
+              </label>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="w-10 h-10 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-50 transition-colors"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  value={quantity}
+                  onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                  className="w-20 h-10 text-center border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-gray-900 focus:border-gray-900"
+                />
+                <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="w-10 h-10 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-50 transition-colors"
+                >
+                  +
+                </button>
               </div>
-
-              {/* Quantity Selector */}
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-900 mb-2">
-                  Quantity
-                </label>
-                <div className="flex items-center gap-2 sm:gap-4">
-                  <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-3 sm:px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100"
-                  >
-                    -
-                  </button>
-                  <input
-                    type="number"
-                    value={quantity}
-                    onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                    className="w-16 sm:w-20 px-2 sm:px-4 py-2 border border-gray-300 rounded-lg text-center"
-                  />
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="px-3 sm:px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-
-              {/* Add to Cart Button */}
-              <button
-                onClick={handleAddToCart}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
-              >
-                <ShoppingCart className="w-5 h-5" />
-                Add to Cart
-              </button>
             </div>
+
+            {/* Add to Cart Button */}
+            <button
+              onClick={handleAddToCart}
+              className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-gray-900 text-white font-medium rounded hover:bg-gray-800 transition-colors"
+            >
+              <ShoppingCart className="w-5 h-5" />
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>

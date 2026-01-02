@@ -18,6 +18,7 @@ const ProductForm = () => {
     stock: '',
   });
   const [imageFiles, setImageFiles] = useState([]);
+  const [existingImages, setExistingImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState({ isOpen: false, type: 'success', title: '', message: '' });
   const [categories, setCategories] = useState([]);
@@ -51,6 +52,7 @@ const ProductForm = () => {
         price: product.price,
         stock: product.stock,
       });
+      setExistingImages(product.images || []);
     } catch (error) {
       setModal({
         isOpen: true,
@@ -260,6 +262,13 @@ const ProductForm = () => {
             <label className="block text-sm font-medium text-gray-900 mb-1">
               Product Images (up to 5) {!isEdit && '*'}
             </label>
+            {isEdit && existingImages.length > 0 && (
+              <div className="mb-3 grid grid-cols-5 gap-2">
+                {existingImages.map((img, idx) => (
+                  <img key={idx} src={img.url} alt="Product" className="w-full h-20 object-cover rounded border" />
+                ))}
+              </div>
+            )}
             <input
               type="file"
               accept="image/jpeg,image/jpg,image/png,image/webp"
@@ -269,7 +278,7 @@ const ProductForm = () => {
             />
             {imageFiles.length > 0 && (
               <p className="text-sm text-gray-600 mt-1">
-                Selected: {imageFiles.length} image(s)
+                Selected: {imageFiles.length} new image(s)
               </p>
             )}
           </div>

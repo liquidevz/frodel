@@ -17,6 +17,8 @@ const ProductList = () => {
     try {
       setLoading(true);
       const response = await productAPI.getAll();
+      console.log('Admin Products:', response.data.data);
+      console.log('First product:', response.data.data[0]);
       setProducts(response.data.data);
     } catch (error) {
       setModal({
@@ -93,8 +95,20 @@ const ProductList = () => {
                 <tr key={product.slug} className="hover:bg-gray-50 transition-colors">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                        <Package className="w-6 h-6 text-gray-400" />
+                      <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                        {product.images && product.images.length > 0 ? (
+                          <img 
+                            src={product.images[0].url} 
+                            alt={product.name} 
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              console.log('Failed image URL:', product.images[0].url);
+                              e.target.parentElement.innerHTML = '<svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>';
+                            }}
+                          />
+                        ) : (
+                          <Package className="w-6 h-6 text-gray-400" />
+                        )}
                       </div>
                       <div>
                         <p className="font-medium text-gray-900">{product.name}</p>

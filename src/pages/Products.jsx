@@ -27,6 +27,8 @@ const Products = () => {
     try {
       setLoading(true);
       const response = await productAPI.getAll();
+      console.log('Products response:', response.data.data);
+      console.log('First product images:', response.data.data[0]?.images);
       setProducts(response.data.data);
     } catch (error) {
       console.error('Failed to fetch products:', error);
@@ -130,11 +132,15 @@ const Products = () => {
               >
                 {/* Image */}
                 <div className="h-48 bg-gray-200 overflow-hidden">
-                  {product.imageUrl ? (
+                  {product.images && product.images.length > 0 ? (
                     <img
-                      src={product.imageUrl}
+                      src={product.images[0].url}
                       alt={product.name}
                       className="w-full h-full object-cover hover:scale-105 transition"
+                      onError={(e) => {
+                        console.log('Image failed to load:', product.images[0].url);
+                        e.target.style.display = 'none';
+                      }}
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-400">
